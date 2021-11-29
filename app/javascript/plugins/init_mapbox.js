@@ -14,11 +14,7 @@ const addClustersToMap = (map, markers) => {
     {
       "type": "Feature",
       "properties": {
-        "id": "ak16994521",
-        "mag": 2.3,
-        "time": 1507425650893,
-        "felt": null,
-        "tsunami": 0
+        "info_window": marker.info_window
       },
       "geometry": {
         "type": "Point",
@@ -30,14 +26,13 @@ const addClustersToMap = (map, markers) => {
 
     const geojsonData = {
       "type": "FeatureCollection",
-      "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
       "features": features
     };
 
     // Add a new source from our GeoJSON data and
     // set the 'cluster' option to true. GL-JS will
     // add the point_count property to your source data.
-    map.addSource('earthquakes', {
+    map.addSource('my-markers', {
       type: 'geojson',
       // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
       // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
@@ -50,7 +45,7 @@ const addClustersToMap = (map, markers) => {
     map.addLayer({
       id: 'clusters',
       type: 'circle',
-      source: 'earthquakes',
+      source: 'my-markers',
       filter: ['has', 'point_count'],
       paint: {
         // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
@@ -82,7 +77,7 @@ const addClustersToMap = (map, markers) => {
     map.addLayer({
       id: 'cluster-count',
       type: 'symbol',
-      source: 'earthquakes',
+      source: 'my-markers',
       filter: ['has', 'point_count'],
       layout: {
         'text-field': '{point_count_abbreviated}',
@@ -94,7 +89,7 @@ const addClustersToMap = (map, markers) => {
     map.addLayer({
       id: 'unclustered-point',
       type: 'circle',
-      source: 'earthquakes',
+      source: 'my-markers',
       filter: ['!', ['has', 'point_count']],
       paint: {
         'circle-color': '#11b4da',
@@ -110,7 +105,7 @@ const addClustersToMap = (map, markers) => {
         layers: ['clusters']
       });
       const clusterId = features[0].properties.cluster_id;
-      map.getSource('earthquakes').getClusterExpansionZoom(
+      map.getSource('my-markers').getClusterExpansionZoom(
         clusterId,
         (err, zoom) => {
           if (err) return;
@@ -129,9 +124,7 @@ const addClustersToMap = (map, markers) => {
     // description HTML from its properties.
     map.on('click', 'unclustered-point', (e) => {
       const coordinates = e.features[0].geometry.coordinates.slice();
-      const mag = e.features[0].properties.mag;
-      const tsunami =
-        e.features[0].properties.tsunami === 1 ? 'yes' : 'no';
+      const info_window = e.features[0].properties.info_window;
 
       // Ensure that if the map is zoomed out such that
       // multiple copies of the feature are visible, the
@@ -142,9 +135,7 @@ const addClustersToMap = (map, markers) => {
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(
-          `magnitude: ${mag}<br>Was there a tsunami?: ${tsunami}`
-        )
+        .setHTML(info_window)
         .addTo(map);
     });
 
