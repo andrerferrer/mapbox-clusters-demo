@@ -1,15 +1,21 @@
 class RestaurantsController < ApplicationController
   def index
     @restaurants = Restaurant.all
+    @markers = @restaurants.geocoded.map do |restaurant|
+      {
+        lat: restaurant.latitude,
+        lng: restaurant.longitude
+      }
+    end
   end
 
   def show
     set_restaurant
     @review = Review.new
-    @marker = {
+    @markers = [{
       lat: @restaurant.latitude,
       lng: @restaurant.longitude
-    }
+    }]
   end
 
   def new
