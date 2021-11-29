@@ -10,6 +10,7 @@ const zoomMapToMarkers = (map, markers) => {
 
 // This function was inspired on this tutorial: https://docs.mapbox.com/mapbox-gl-js/example/cluster/
 const addClustersToMap = (map, markers) => {
+  // create an array of GeoJson features from the markers
   const features = markers.map(marker => (
     {
       "type": "Feature",
@@ -22,6 +23,7 @@ const addClustersToMap = (map, markers) => {
       }
     }
   ))
+
   map.on('load', () => {
 
     const geojsonData = {
@@ -74,6 +76,7 @@ const addClustersToMap = (map, markers) => {
       }
     });
 
+    // Add count inside cluster
     map.addLayer({
       id: 'cluster-count',
       type: 'symbol',
@@ -86,6 +89,7 @@ const addClustersToMap = (map, markers) => {
       }
     });
 
+    // Add dots for cluster (clickable with popups)
     map.addLayer({
       id: 'unclustered-point',
       type: 'circle',
@@ -93,13 +97,13 @@ const addClustersToMap = (map, markers) => {
       filter: ['!', ['has', 'point_count']],
       paint: {
         'circle-color': '#11b4da',
-        'circle-radius': 4,
+        'circle-radius': 8,
         'circle-stroke-width': 1,
         'circle-stroke-color': '#fff'
       }
     });
 
-    // inspect a cluster on click
+    // inspect a cluster on click (open the popup)
     map.on('click', 'clusters', (e) => {
       const features = map.queryRenderedFeatures(e.point, {
         layers: ['clusters']
@@ -139,10 +143,12 @@ const addClustersToMap = (map, markers) => {
         .addTo(map);
     });
 
+    // change mouse to 'pointer' when hovering on clusters
     map.on('mouseenter', 'clusters', () => {
       map.getCanvas().style.cursor = 'pointer';
     });
 
+    // change mouse back to normal one when hovering out of clusters
     map.on('mouseleave', 'clusters', () => {
       map.getCanvas().style.cursor = '';
     });
@@ -160,7 +166,7 @@ const initMapbox = () => {
     });
 
     const markers = JSON.parse(mapElement.dataset.markers);
-
+    zoomMapToMarkers(map, markers)
     addClustersToMap(map, markers);
   }
 };

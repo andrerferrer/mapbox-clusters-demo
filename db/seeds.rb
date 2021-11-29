@@ -1,9 +1,9 @@
 puts "Create some Restaurants"
 
-1000.times do
+100.times do
   restaurant = Restaurant.create!(
     name: Faker::Movies::StarWars.planet,
-    address: Faker::Address.country
+    address: "#{['Rio de Janeiro', 'Sao Paulo', 'Belo Horizonte'].sample}, Brazil"
   )
   puts "Created restaurant: #{restaurant.name} in #{restaurant.address}"
 end
