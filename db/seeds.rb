@@ -1,6 +1,6 @@
 puts "Create some Restaurants"
 
-200.times do
+1000.times do
   restaurant = Restaurant.create!(
     name: Faker::Movies::StarWars.planet,
     address: Faker::Address.country
