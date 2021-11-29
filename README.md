@@ -12,6 +12,18 @@ This demo was created from [this demo](git@github.com:andrerferrer/geocoder-map.
 - [Remove markers and add clusters](https://github.com/andrerferrer/mapbox-clusters-demo/commit/ce5d53dc0a2889f130311d0e862bde3467f6eca2)
 - [Add info windows to clusters](https://github.com/andrerferrer/mapbox-clusters-demo/commit/48400d9d42cdf01c10dc9e706e481a1c958f9e42)
 
+## Sources
+- Mapbox documentation on:
+
+    [Cluster](https://docs.mapbox.com/mapbox-gl-js/example/cluster/);
+
+    [GeoJson Cluster](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/#geojson-cluster);
+
+    [GeoJson](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/#geojson);
+
+    [Map#AddSource](https://docs.mapbox.com/mapbox-gl-js/api/map/#map#addsource);
+
+
 And we're good to go 🤓
 
 Good Luck and Have Fun
