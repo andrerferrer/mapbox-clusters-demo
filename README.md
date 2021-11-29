@@ -8,9 +8,9 @@ This demo was created from [this demo](git@github.com:andrerferrer/geocoder-map.
 
 ## What needs to be done?
 
-- Add many seeds to have clusters
-- Remove markers and add clusters
-- Add info windows to clusters
+- [Add many seeds to have clusters](https://github.com/andrerferrer/mapbox-clusters-demo/commit/62ebb0e19d303a7aedb462cf776fd58bc41226b9)
+- [Remove markers and add clusters](https://github.com/andrerferrer/mapbox-clusters-demo/commit/ce5d53dc0a2889f130311d0e862bde3467f6eca2)
+- [Add info windows to clusters](https://github.com/andrerferrer/mapbox-clusters-demo/commit/48400d9d42cdf01c10dc9e706e481a1c958f9e42)
 
 And we're good to go 🤓
 
