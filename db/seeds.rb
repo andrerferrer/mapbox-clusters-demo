@@ -1,7 +1,12 @@
 puts "Create some Restaurants"
 
-Restaurant.create! name: "Amareleen", address: "Ladeira da Glória, 8 - Glória, Rio de Janeiro - RJ, 22211-120"
-Restaurant.create! name: "Verdeen", address: "Ladeira da Glória, 8 - Glória, Rio de Janeiro - RJ, 22211-120"
+200.times do
+  restaurant = Restaurant.create!(
+    name: Faker::Movies::StarWars.planet,
+    address: Faker::Address.country
+  )
+  puts "Created restaurant: #{restaurant.name} in #{restaurant.address}"
+end
 
 puts "Let's drink a beer"
 puts %{
