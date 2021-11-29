@@ -15,13 +15,10 @@ This demo was created from [this demo](git@github.com:andrerferrer/geocoder-map.
 ## Sources
 - Mapbox documentation on:
 
-    [Cluster](https://docs.mapbox.com/mapbox-gl-js/example/cluster/);
-
-    [GeoJson Cluster](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/#geojson-cluster);
-
-    [GeoJson](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/#geojson);
-
-    [Map#AddSource](https://docs.mapbox.com/mapbox-gl-js/api/map/#map#addsource);
+    - [Cluster](https://docs.mapbox.com/mapbox-gl-js/example/cluster/);
+    - [GeoJson Cluster](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/#geojson-cluster);
+    - [GeoJson](https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/#geojson);
+    - [Map#AddSource](https://docs.mapbox.com/mapbox-gl-js/api/map/#map#addsource);
 
 
 And we're good to go 🤓
